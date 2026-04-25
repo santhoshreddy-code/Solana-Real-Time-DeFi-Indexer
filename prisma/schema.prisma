@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Transaction {
+  id             Int      @id @default(autoincrement())
+  signature      String   @unique
+  slot           Int
+  blockTime      DateTime?
+  program        String
+  classification String
+  success        Boolean  @default(true)
+  fee            BigInt?
+  indexedAt       DateTime @default(now())
+
+  @@index([program])
+  @@index([slot])
+  @@index([blockTime])
+  @@index([indexedAt])
+}
+
+model IndexerStats {
+  id                  Int      @id @default(autoincrement())
+  timestamp           DateTime @default(now())
+  totalTransactions   Int      @default(0)
+  jupiterCount        Int      @default(0)
+  orcaCount           Int      @default(0)
+  raydiumCount        Int      @default(0)
+  serumCount          Int      @default(0)
+  transactionsPerSec  Float    @default(0)
+
+  @@index([timestamp])
+}
