@@ -92,7 +92,7 @@ Solana Mainnet
 ### Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/solana-defi-indexer.git
+git clone https://github.com/santhoshreddy-code/Solana-Real-Time-DeFi-Indexer.git
 cd solana-defi-indexer
 npm install
 ```
